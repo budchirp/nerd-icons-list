@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: JetbrainsMono;
+  src: url(/font.ttf);
+}
+
+@layer components {
+  .bg-primary {
+    @apply bg-gray-50 dark:bg-gray-950;
+  }
+
+  .bg-secondary {
+    @apply bg-white dark:bg-black;
+  }
+
+  .\!bg-secondary {
+    @apply !bg-white !dark:bg-black;
+  }
+
+  .text-primary {
+    @apply text-gray-950 dark:text-gray-50;
+  }
+
+  .\!text-primary {
+    @apply !text-gray-950 !dark:text-gray-50;
+  }
+
+  .border-primary {
+    @apply border-gray-100 dark:border-gray-900;
+  }
+}
+
+* {
+  font-family: JetbrainsMono, monospace;
+}
