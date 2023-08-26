@@ -7,14 +7,11 @@ const load: PageServerLoad = async () => {
 
     delete icons['METADATA']
 
-    icons = Object.keys(icons).map((key, index) => {
-      return {
-        id: index,
-        key,
-        icon: icons[key].char,
-        unicode: icons[key].code
-      }
-    })
+    icons = Object.keys(icons).map((key) => ({
+      id: key,
+      key,
+      icon: icons[key].char
+    }))
 
     return { icons }
   } catch (error) {

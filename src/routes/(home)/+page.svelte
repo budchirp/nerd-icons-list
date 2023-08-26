@@ -1,37 +1,27 @@
 <script lang="ts">
+  import { copy } from '$lib/copy'
   import MiniSearch from 'minisearch'
-  import toast from 'svelte-french-toast'
 
   export let data
 
-  let icons: any
+  let icons: any[] = data.icons
 
   let miniSearch = new MiniSearch({
     fields: ['key'],
-    storeFields: ['key', 'icon', 'unicode']
+    storeFields: ['key', 'icon']
   })
-  miniSearch.addAll(Object.assign([], data.icons))
+  miniSearch.addAll(data.icons)
 
-  let searchText: string | null | undefined = null
+  let searchText: string = ''
   const search = () => {
-    if (!searchText) {
-      icons = Object.assign([], data.icons)
-    } else {
-      icons = miniSearch.search(searchText as string) as any
+    if (searchText) {
+      icons = miniSearch.search(searchText) as any
     }
   }
 
-  const copy = (copyText: string) => {
-    navigator.clipboard.writeText(copyText)
-
-    toast('Successfully copied!', {
-      style: '',
-      className: '!bg-secondary !shadow-none !py-1 !px-4 !border !text-sm !text-primary !font-medium !border-primary !rounded-full',
-      position: 'bottom-center'
-    })
+  $: if (searchText === '' && icons !== data.icons) {
+    icons = data.icons
   }
-
-  search()
 </script>
 
 <svelte:head>
@@ -58,7 +48,6 @@
           >
             {icon.icon}
           </button>
-          <!-- <span class="text-center break-all">{icon.key}</span> -->
         </div>
       {/each}
     </div>

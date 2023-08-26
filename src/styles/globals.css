@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: JetbrainsMono;
-  src: url(/font.ttf);
+  src: url('/font.woff2');
 }
 
 @layer components {
